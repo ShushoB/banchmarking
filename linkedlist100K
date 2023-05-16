@@ -1,0 +1,69 @@
+import time
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def insert(self, data):
+        new_node = Node(data)
+
+        if self.head is None:
+            self.head = new_node
+        else:
+            current = self.head
+            while current.next is not None:
+                current = current.next
+            current.next = new_node
+
+    def delete(self, data):
+        current = self.head
+        prev = None
+
+        while current is not None:
+            if current.data == data:
+                if prev is None:
+                    self.head = current.next
+                else:
+                    prev.next = current.next
+                return
+            prev = current
+            current = current.next
+
+    def find(self, data):
+        current = self.head
+
+        while current is not None:
+            if current.data == data:
+                return True
+            current = current.next
+
+        return False
+
+
+linkedList = LinkedList()
+for i in range(1, 100001):
+    linkedList.insert(i)
+
+start_time_insert = time.time()
+linkedList.insert(100001)
+end_time_insert = time.time()
+insertion_time = end_time_insert - start_time_insert
+print(f"Insertion execution time for 100K-noded linked list: {insertion_time} seconds")
+
+start_time_find = time.time()
+finding_time = 0
+if linkedList.find(500):
+    end_time_find = time.time()
+    finding_time = end_time_find - start_time_find
+print(f"Find execution time for 100K-noded linked list: {finding_time} seconds")
+
+start_time_delete = time.time()
+linkedList.delete(500)
+end_time_delete = time.time()
+delete_time = end_time_delete - start_time_delete
+print(f"Deletion execution time for 100K-noded linked list: {delete_time} seconds")
