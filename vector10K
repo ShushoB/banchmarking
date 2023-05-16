@@ -1,0 +1,29 @@
+import time
+
+vector_1K = [0] * 10000
+
+start_time_insert = time.time()
+vector_1K.insert(5000,5000)
+end_time_insert = time.time()
+insertion_time = end_time_insert - start_time_insert
+print(f"Insertion execution time for 10K element vector: {insertion_time} seconds")
+
+
+def vector_search(arr, value):
+    for i in range(0,len(arr)):
+        if arr[i] == value:
+            return arr[i]
+
+
+start_time_find = time.time()
+vector_search(vector_1K, 5000)
+end_time_find = time.time()
+finding_time = end_time_find - start_time_find
+print(f"Find execution time for 10K element vector: {finding_time} seconds")
+
+
+start_time_delete = time.time()
+vector_1K.pop(500)
+end_time_delete = time.time()
+delete_time = end_time_delete - start_time_delete
+print(f"Deletion execution time for 10K element vector: {delete_time} seconds")
